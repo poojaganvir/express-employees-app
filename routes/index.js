@@ -21,7 +21,6 @@ con.connect(function(err) {
 router.get('/', function(req, res, next) {
 	const query = "SELECT * FROM members";
 	con.query(query, function(err, result) {
-		console.log(result);
 		if(err) throw err;
 		else res.render('index', {
 			members: result,
@@ -37,7 +36,6 @@ router.get('/add', function(req, res, next) {
 
 /* GET add page. */
 router.post('/add', function(req, res, next) {
-	console.log('post add');
 
 	req.assert('name', 'Name cannot be blank').notEmpty();
 	req.assert('email', 'Email cannot be blank').isEmail();
