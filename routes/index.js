@@ -34,7 +34,7 @@ router.get('/add', function(req, res, next) {
 	res.render('add', { title: 'Express' });
 });
 
-/* GET add page. */
+/* POST add page. */
 router.post('/add', function(req, res, next) {
 
 	req.assert('name', 'Name cannot be blank').notEmpty();
@@ -65,5 +65,40 @@ router.post('/add', function(req, res, next) {
 		}
 	});
 });
+
+// Get Edit form
+router.get('/edit/:id', function(req, res, next) {
+	const query = "SELECT * FROM members WHERE id="+req.params.id;
+	con.query(query, function(err, result) {
+		console.log('result---', result);
+		if(err) {
+			console.log(err)
+		} else {
+			res.render('add', {
+				member: result[0],
+				editForm: true
+			});
+		}
+	});
+});
+
+// Post Edit form
+router.post('/edit/:id', function(req, res, next) {
+	const query = 'UPDATE members SET ? WHERE id='+req.params.id;
+	const employees = {
+		name: req.body.name,
+		email: req.body.email,
+		phone: req.body.phone
+	}
+
+	con.query(query, employees, function(err, result) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log('Record Updated');
+			res.redirect('/');
+		}
+	});
+})
 
 module.exports = router;

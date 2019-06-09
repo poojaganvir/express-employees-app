@@ -1,28 +1,56 @@
 extends layout
 
 block content
-	h1 Add
 
-	form(method="post" action="/add")
-		.row.form-group
-			.col-sm-2
-				label.label-control Name
-			.col-sm-4
-				input.form-control(type="text", name="name")
+	if editForm == true
+		h1 Edit
 
-		.row.form-group
-			.col-sm-2
-				label.label-control Email
-			.col-sm-4
-				input.form-control(type="text", name="email")
+		form(method="post" action="/edit/"+member.id)
+			.row.form-group
+				.col-sm-2
+					label.label-control Name
+				.col-sm-4
+					input.form-control(type="text",name="name", value=member.name)
 
-		.row.form-group
-			.col-sm-2
-				label.label-control Phone Number
-			.col-sm-4
-				input.form-control(type="text", name="phone")
+			.row.form-group
+				.col-sm-2
+					label.label-control Email
+				.col-sm-4
+					input.form-control(type="text",name="email", value=member.email)
 
-		.row.form-group
-			.col-sm-6
-				button.btn.btn-outline-success(type="submit") Submit
+			.row.form-group
+				.col-sm-2
+					label.label-control Phone Number
+				.col-sm-4
+					input.form-control(type="text", name="phone", value=member.phone)
+
+			.row.form-group
+				.col-sm-6
+					button.btn.btn-outline-success(type="submit") Submit
+
+	else 
+		h1 Add
+
+		form(method="post" action="/add")
+			.row.form-group
+				.col-sm-2
+					label.label-control Name
+				.col-sm-4
+					input.form-control(type="text",name="name")
+
+			.row.form-group
+				.col-sm-2
+					label.label-control Email
+				.col-sm-4
+					input.form-control(type="text",name="email")
+
+			.row.form-group
+				.col-sm-2
+					label.label-control Phone Number
+				.col-sm-4
+					input.form-control(type="text", name="phone")
+
+			.row.form-group
+				.col-sm-6
+					button.btn.btn-outline-success(type="submit") Submit
 

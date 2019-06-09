@@ -18,6 +18,7 @@ block content
 						th Name
 						th Email
 						th Phone Number
+						th Action
 
 					tbody
 						each member in members
@@ -25,6 +26,8 @@ block content
 								td= member.name
 								td= member.email
 								td= member.phone
+								td
+									a.btn.btn-primary(href="/edit/"+member.id) Edit
 
 			else
 				p Data not found
