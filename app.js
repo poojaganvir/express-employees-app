@@ -34,6 +34,7 @@ app.get('/add', indexRouter);
 app.post('/add', indexRouter);
 app.get('/edit/:id', indexRouter);
 app.post('/edit/:id', indexRouter);
+app.get('/delete/:id', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

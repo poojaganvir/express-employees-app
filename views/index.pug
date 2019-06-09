@@ -27,7 +27,9 @@ block content
 								td= member.email
 								td= member.phone
 								td
-									a.btn.btn-primary(href="/edit/"+member.id) Edit
+									a.btn.btn-outline-warning(href="/edit/"+member.id) Edit
+									span &nbsp;
+									a.btn.btn-outline-danger(href="/delete/"+member.id) Delete
 
 			else
 				p Data not found

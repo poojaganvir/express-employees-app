@@ -99,6 +99,20 @@ router.post('/edit/:id', function(req, res, next) {
 			res.redirect('/');
 		}
 	});
-})
+});
+
+// Delete member
+router.get('/delete/:id', function(req, res, next) {
+	const query = "DELETE FROM members WHERE id="+req.params.id;
+
+	con.query(query, function(err, result) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log('Record Deleted');
+			res.redirect('/');
+		}
+	});
+});
 
 module.exports = router;
