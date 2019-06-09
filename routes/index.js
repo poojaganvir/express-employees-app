@@ -19,7 +19,15 @@ con.connect(function(err) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	const query = "SELECT * FROM members";
+	con.query(query, function(err, result) {
+		console.log(result);
+		if(err) throw err;
+		else res.render('index', {
+			members: result,
+			title: 'Express'
+		});
+	});
 });
 
 /* GET add page. */
@@ -30,11 +38,24 @@ router.get('/add', function(req, res, next) {
 /* GET add page. */
 router.post('/add', function(req, res, next) {
 	console.log('post add');
+
+	req.assert('name', 'Name cannot be blank').notEmpty();
+	req.assert('email', 'Email cannot be blank').isEmail();
+	req.assert('phone', 'Phone number cannot be blank').notEmpty();
+
+	const errors = req.validationErrors();
+
+	if(errors) {
+		req.flash('errors', errors);
+		return res.redirect('/');
+	}
+
 	let employees = {
 		name: req.body.name, 
 		email: req.body.email, 
 		phone: req.body.phone
 	}
+
 	let sql = "INSERT INTO members SET ?";
 
 	con.query(sql,employees,function(err, result) {
@@ -42,7 +63,7 @@ router.post('/add', function(req, res, next) {
 			console.log(err);
 		} else {
 			console.log('Record Saved');
-			res.render('index', { title: 'Express' });
+			res.redirect('/');
 		}
 	});
 });

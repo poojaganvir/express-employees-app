@@ -1,7 +1,30 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}
 
-  a.btn.btn-outline-primary(href="/add") Add
+	.row
+		.col-sm-12
+			a.btn.btn-outline-primary(href="/add") Add
+
+	br
+
+	.row
+		.col-sm-12
+			if members.length != 0
+				table.table
+					thead
+						th Name
+						th Email
+						th Phone Number
+
+					tbody
+						each member in members
+							tr
+								td= member.name
+								td= member.email
+								td= member.phone
+
+			else
+				p Data not found
