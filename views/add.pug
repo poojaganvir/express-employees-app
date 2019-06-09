@@ -1,0 +1,28 @@
+extends layout
+
+block content
+	h1 Add
+
+	form(method="post" action="/add")
+		.row.form-group
+			.col-sm-2
+				label.label-control Name
+			.col-sm-4
+				input.form-control(type="text", name="name")
+
+		.row.form-group
+			.col-sm-2
+				label.label-control Email
+			.col-sm-4
+				input.form-control(type="text", name="email")
+
+		.row.form-group
+			.col-sm-2
+				label.label-control Phone Number
+			.col-sm-4
+				input.form-control(type="text", name="phone")
+
+		.row.form-group
+			.col-sm-6
+				button.btn.btn-outline-success(type="submit") Submit
+
