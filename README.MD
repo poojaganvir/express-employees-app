@@ -3,3 +3,4 @@
 
 #### Run app locally
 	npm start
+	Then got to this url http://localhost:3000/
